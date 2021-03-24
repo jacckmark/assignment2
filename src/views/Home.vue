@@ -3,15 +3,19 @@
     <h1>Home</h1>
     <ul>
       <li v-for="(person, index) of peopleResult" :key="index">
-        {{ person.name }}
+        <Card :person="person" />
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+  import Card from '@/components/Card';
   export default {
     name: 'HomePage',
+    components: {
+      Card
+    },
     data() {
       return {
         endpoint: "https://swapi.dev/api/people/?page=",
@@ -53,7 +57,8 @@
             "eye_color": "blue",
             "mass": "77",
             "homeworld": 1,
-            "birth_year": "19BBY"
+            "birth_year": "19BBY",
+            "url": "http://swapi.dev/api/people/1/"
           },
           {
             "edited": "2014-12-20T21:17:50.309Z",
@@ -66,7 +71,8 @@
             "eye_color": "yellow",
             "mass": "75",
             "homeworld": 1,
-            "birth_year": "112BBY"
+            "birth_year": "112BBY",
+            "url": "http://swapi.dev/api/people/2/"
           },
           {
             "edited": "2014-12-20T21:17:50.311Z",
@@ -79,7 +85,8 @@
             "eye_color": "red",
             "mass": "32",
             "homeworld": 8,
-            "birth_year": "33BBY"
+            "birth_year": "33BBY",
+            "url": "http://swapi.dev/api/people/5/"
           },
           {
             "edited": "2014-12-20T21:17:50.317Z",
@@ -92,7 +99,8 @@
             "eye_color": "blue",
             "mass": "120",
             "homeworld": 1,
-            "birth_year": "52BBY"
+            "birth_year": "52BBY",
+            "url": "http://swapi.dev/api/people/12/"
           },
           {
             "edited": "2014-12-20T21:17:50.319Z",
@@ -105,7 +113,8 @@
             "eye_color": "blue",
             "mass": "75",
             "homeworld": 1,
-            "birth_year": "47BBY"
+            "birth_year": "47BBY",
+            "url": "http://swapi.dev/api/people/9/"
           },
           {
             "edited": "2014-12-20T21:17:50.330Z",
@@ -118,7 +127,8 @@
             "eye_color": "blue",
             "mass": "unknown",
             "homeworld": 21,
-            "birth_year": "64BBY"
+            "birth_year": "64BBY",
+            "url": "http://swapi.dev/api/people/91/"
           },
           {
             "edited": "2014-12-20T21:17:50.338Z",
@@ -131,7 +141,8 @@
             "eye_color": "orange",
             "mass": "1,358",
             "homeworld": 24,
-            "birth_year": "600BBY"
+            "birth_year": "600BBY",
+            "url": "http://swapi.dev/api/people/13/"
           }];
         return people;
       }
