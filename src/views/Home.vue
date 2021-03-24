@@ -1,6 +1,11 @@
 <template>
   <div class="homePage">
     <h1>Home</h1>
+    <ul>
+      <li v-for="(person, index) of peopleResult" :key="index">
+        {{ person.name }}
+      </li>
+    </ul>
   </div>
 </template>
 
