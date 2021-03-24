@@ -9,7 +9,7 @@
     name: 'HomePage',
     data() {
       return {
-        endpoint: "https://swapi.dev/api/people/",
+        endpoint: "https://swapi.dev/api/people/?page=",
         peopleResult: []
       }
     },
@@ -18,20 +18,24 @@
     },
     methods: {
       async getAllPeople() {
-
-        try {
-          let result = [];
-          let url = this.endpoint;
-          while (url) {
-            const response = await this.axios.get(this.endpoint);
-            console.log(response);
-            result.push(...response.data.results);
-            url = response?.data?.next;
+        let pageCounter = 1;
+        let people = [];
+        let lastResult = [];
+        do {
+          try {
+            const response = await this.axios.get(`${this.endpoint}${pageCounter}`);
+            const data = response.data;
+            lastResult = data;
+            data.results.forEach(person => {
+              const { name, height, films } = person;
+              people.push({ name, height, films });
+            });
+            pageCounter++;
+          } catch (err) {
+            console.error(err);
           }
-          return result;
-        } catch (err) {
-          console.log(err);
-        }
+        } while (lastResult.next);
+        return people;
       }
     },
     computed: {
