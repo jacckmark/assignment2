@@ -109,6 +109,7 @@
     methods: {
       async getPerson(personId) {
         try {
+          console.log(`${this.endpoint}${personId}`);
           const response = await this.axios.get(`${this.endpoint}${personId}`);
           return response.data;
         } catch (err) {
