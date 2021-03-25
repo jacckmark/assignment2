@@ -28,7 +28,8 @@
     mounted() { },
     computed: {
       personGender() {
-        return this.person.gender !== 'n/a' && this.person.gender !== 'hermaphrodite' ? this.person.gender.toLowerCase() : 'identicon';
+        let otherGenders = ['n/a', 'hermaphrodite', 'none'];
+        return otherGenders.some(gender => gender === this.person.gender) ? 'identicon' : this.person.gender.toLowerCase();
       },
       personPicUrl() {
         return `${this.avatarsEndpoint}${this.personGender}/${this.personId}.svg`

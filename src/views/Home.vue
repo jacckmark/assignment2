@@ -1,11 +1,20 @@
 <template>
-  <div class="homePage">
+  <div class="homePage container-fluid">
     <h1>Home</h1>
-    <ul>
-      <li v-for="(person, index) of peopleResult" :key="index">
-        <Card :person="person" />
-      </li>
-    </ul>
+    <div class="row justify-content-around mb-3">
+      <BaseButton buttonTxt="Female count:" :badgeTxt="femaleCount" />
+      <BaseButton buttonTxt="Male count:" :badgeTxt="maleCount" />
+      <BaseButton
+        buttonTxt="Other gender count:"
+        :badgeTxt="otherGenderCount"
+      />
+      <BaseButton buttonTxt="People count:" :badgeTxt="peopleCount" />
+    </div>
+    <Card
+      v-for="(person, index) of peopleResult"
+      :key="index"
+      :person="person"
+    />
   </div>
 </template>
 
@@ -37,8 +46,9 @@
         //     lastResult = data;
         //     console.log(data);
         //     data.results.forEach(person => {
-        //       const { name, height, films } = person;
-        //       people.push({ name, height, films });
+        //       //   const { name, height, films } = person;
+        //       //   people.push({ name, height, films });
+        //       people.push(person)
         //     });
         //     pageCounter++;
         //   } catch (err) {
@@ -92,7 +102,7 @@
             "edited": "2014-12-20T21:17:50.317Z",
             "name": "Owen Lars",
             "created": "2014-12-10T15:52:14.024Z",
-            "gender": "male",
+            "gender": "none",
             "skin_color": "light",
             "hair_color": "brown, grey",
             "height": "178",
@@ -118,7 +128,7 @@
           },
           {
             "edited": "2014-12-20T21:17:50.330Z",
-            "name": "Wilhuff Tarkin",
+            "name": "BWilhuff Tarkin",
             "created": "2014-12-10T16:26:56.138Z",
             "gender": "male",
             "skin_color": "fair",
@@ -132,7 +142,7 @@
           },
           {
             "edited": "2014-12-20T21:17:50.338Z",
-            "name": "Jabba Desilijic Tiure",
+            "name": "AJabba Desilijic Tiure",
             "created": "2014-12-10T17:11:31.638Z",
             "gender": "hermaphrodite",
             "skin_color": "green-tan, brown",
@@ -151,8 +161,23 @@
       peopleList() {
         return this.peopleResult?.results;
       },
+      femaleCount() {
+        return this.peopleResult?.filter(el => el.gender === 'female').length;
+      },
+      maleCount() {
+        return this.peopleResult?.filter(el => el.gender === 'male').length;
+      },
+      otherGenderCount() {
+        return this.peopleResult?.filter(el => el.gender !== 'male' && el.gender !== 'female').length
+      },
       peopleCount() {
-        return this.peopleResult?.count;
+        return this.maleCount + this.femaleCount + this.otherGenderCount;
+      },
+      peopleFilteredByLetters() {
+        const filteredLetters = ['a', 'b', 'c'];
+        return this.peopleResult.filter(el => {
+          return filteredLetters.some(letter => letter === el.name.charAt(0).toLowerCase())
+        })
       }
     }
   }
