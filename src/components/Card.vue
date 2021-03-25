@@ -7,7 +7,11 @@
       <div class="col-md-9">
         <div class="card-body">
           <div class="row">
-            <h5 class="card-title" v-if="personName">
+            <h5
+              class="card-title"
+              :style="{ color: eyeColor }"
+              v-if="personName"
+            >
               {{ personName }}
             </h5>
             <font-awesome-layers
@@ -43,6 +47,8 @@
 </template>
 
 <script>
+  import scssvars from '@/assets/styles/export.scss'
+
   export default {
     name: 'Card',
     props: {
@@ -107,6 +113,12 @@
         } else {
           return 'balance-scale-right';
         }
+      },
+      eyeColor() {
+        for (let col in scssvars) {
+          if (this.person.eye_color === col) return col;
+        }
+        return 'black';
       }
     }
   }

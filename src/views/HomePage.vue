@@ -50,7 +50,7 @@
         endpoint: "https://swapi.dev/api/people/?page=",
         peopleResult: [],
         peopleCurList: [],
-        activeFilter: "all",
+        activeFilter: "all"
       }
     },
     async mounted() {
@@ -143,7 +143,7 @@
             "skin_color": "light",
             "hair_color": "brown",
             "height": "165",
-            "eye_color": "blue",
+            "eye_color": "blue, green",
             "mass": "65",
             "homeworld": 1,
             "birth_year": "47BBY",
@@ -226,7 +226,7 @@
       },
       isPeopleListEmpty() {
         return this.peopleCurList?.length;
-      }
+      },
     },
   }
 </script>
