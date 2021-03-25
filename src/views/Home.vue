@@ -1,17 +1,34 @@
 <template>
   <div class="homePage container-fluid">
-    <h1>Home</h1>
     <div class="row justify-content-around mb-3">
-      <BaseButton buttonTxt="Female count:" :badgeTxt="femaleCount" />
-      <BaseButton buttonTxt="Male count:" :badgeTxt="maleCount" />
-      <BaseButton
-        buttonTxt="Other gender count:"
-        :badgeTxt="otherGenderCount"
+      <ButtonFilter
+        @filterAction="filterFemales"
+        filterTxt="Female count:"
+        :active="activeFilter === 'female'"
+        :filteredAmount="femaleCount"
       />
-      <BaseButton buttonTxt="People count:" :badgeTxt="peopleCount" />
+      <ButtonFilter
+        @filterAction="filterMales"
+        filterTxt="Male count:"
+        :active="activeFilter === 'male'"
+        :filteredAmount="maleCount"
+      />
+      <ButtonFilter
+        @filterAction="filterOther"
+        filterTxt="Other gender count:"
+        :active="activeFilter === 'other'"
+        :filteredAmount="otherGenderCount"
+      />
+      <ButtonFilter
+        @filterAction="filterAll"
+        filterTxt="People count:"
+        :active="activeFilter === 'all'"
+        :filteredAmount="peopleCount"
+      />
     </div>
     <Card
-      v-for="(person, index) of peopleResult"
+      v-for="(person, index) of peopleCurList"
+      class="mb-3"
       :key="index"
       :person="person"
     />
@@ -20,19 +37,24 @@
 
 <script>
   import Card from '@/components/Card';
+  import ButtonFilter from '@/components/ButtonFilter';
+
   export default {
     name: 'HomePage',
     components: {
-      Card
+      Card, ButtonFilter
     },
     data() {
       return {
         endpoint: "https://swapi.dev/api/people/?page=",
-        peopleResult: []
+        peopleResult: [],
+        peopleCurList: [],
+        activeFilter: "all",
       }
     },
     async mounted() {
       this.peopleResult = await this.getAllPeople();
+      this.peopleCurList = this.peopleResult;
     },
     methods: {
       async getAllPeople() {
@@ -46,8 +68,8 @@
         //     lastResult = data;
         //     console.log(data);
         //     data.results.forEach(person => {
-        //       //   const { name, height, films } = person;
-        //       //   people.push({ name, height, films });
+        //       const { name, skin_color, eye_color, birth_year } = person;
+        //       people.push({ name, skin_color, eye_color, birth_year });
         //       people.push(person)
         //     });
         //     pageCounter++;
@@ -107,7 +129,7 @@
             "hair_color": "brown, grey",
             "height": "178",
             "eye_color": "blue",
-            "mass": "120",
+            "mass": "50",
             "homeworld": 1,
             "birth_year": "52BBY",
             "url": "http://swapi.dev/api/people/12/"
@@ -121,7 +143,7 @@
             "hair_color": "brown",
             "height": "165",
             "eye_color": "blue",
-            "mass": "75",
+            "mass": "65",
             "homeworld": 1,
             "birth_year": "47BBY",
             "url": "http://swapi.dev/api/people/9/"
@@ -155,20 +177,45 @@
             "url": "http://swapi.dev/api/people/13/"
           }];
         return people;
+      },
+      filterFemales() {
+        this.peopleCurList = this.filteredFemales;
+        this.activeFilter = 'female';
+      },
+      filterMales() {
+        this.peopleCurList = this.filteredMales;
+        this.activeFilter = 'male';
+      },
+      filterOther() {
+        this.peopleCurList = this.filteredOthers;
+        this.activeFilter = 'other';
+      },
+      filterAll() {
+        this.peopleCurList = this.peopleResult;
+        this.activeFilter = 'all';
       }
     },
     computed: {
+      filteredFemales() {
+        return this.peopleResult?.filter(el => el.gender === 'female');
+      },
+      filteredMales() {
+        return this.peopleResult?.filter(el => el.gender === 'male');
+      },
+      filteredOthers() {
+        return this.peopleResult?.filter(el => el.gender !== 'male' && el.gender !== 'female');
+      },
       femaleCount() {
-        return this.peopleResult?.filter(el => el.gender === 'female').length;
+        return this.filteredFemales?.length;
       },
       maleCount() {
-        return this.peopleResult?.filter(el => el.gender === 'male').length;
+        return this.filteredMales?.length;
       },
       otherGenderCount() {
-        return this.peopleResult?.filter(el => el.gender !== 'male' && el.gender !== 'female').length
+        return this.filteredOthers?.length;
       },
       peopleCount() {
-        return this.maleCount + this.femaleCount + this.otherGenderCount;
+        return this.peopleResult?.length;
       },
       peopleFilteredByLetters() {
         const filteredLetters = ['a', 'b', 'c'];
@@ -176,9 +223,17 @@
           return filteredLetters.some(letter => letter === el.name.charAt(0).toLowerCase())
         })
       }
-    }
+    },
   }
 </script>
 
 <style scoped lang="scss">
+  .homePage {
+    width: 95vw;
+  }
+  @media (min-width: $br-large) {
+    .homePage {
+      width: 60vw;
+    }
+  }
 </style>

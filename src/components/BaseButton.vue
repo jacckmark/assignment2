@@ -1,5 +1,9 @@
 <template>
-  <button type="button" class="btn btn-secondary">
+  <button
+    type="button"
+    @click="btnClicked"
+    :class="['btn', `btn-${buttonType}`]"
+  >
     {{ buttonTxt }}
     <span v-if="badgeTxt" class="badge badge-light">{{ badgeTxt }}</span>
   </button>
@@ -15,8 +19,17 @@
       },
       badgeTxt: {
         type: [String, Number]
+      },
+      buttonType: {
+        type: String,
+        default: "secondary"
       }
     },
+    methods: {
+      btnClicked() {
+        this.$emit('click');
+      }
+    }
   }
 </script>
 
