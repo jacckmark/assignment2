@@ -91,7 +91,7 @@
             "mass": "77",
             "homeworld": 1,
             "birth_year": "19BBY",
-            "url": "http://swapi.dev/api/people/1/"
+            "url": "https://swapi.dev/api/people/1/"
           },
           {
             "edited": "2014-12-20T21:17:50.309Z",
@@ -105,7 +105,7 @@
             "mass": "75",
             "homeworld": 1,
             "birth_year": "112BBY",
-            "url": "http://swapi.dev/api/people/2/"
+            "url": "https://swapi.dev/api/people/2/"
           },
           {
             "edited": "2014-12-20T21:17:50.311Z",
@@ -119,7 +119,7 @@
             "mass": "32",
             "homeworld": 8,
             "birth_year": "33BBY",
-            "url": "http://swapi.dev/api/people/5/"
+            "url": "https://swapi.dev/api/people/5/"
           },
           {
             "edited": "2014-12-20T21:17:50.317Z",
@@ -133,7 +133,7 @@
             "mass": "50",
             "homeworld": 1,
             "birth_year": "52BBY",
-            "url": "http://swapi.dev/api/people/12/"
+            "url": "https://swapi.dev/api/people/12/"
           },
           {
             "edited": "2014-12-20T21:17:50.319Z",
@@ -147,7 +147,7 @@
             "mass": "65",
             "homeworld": 1,
             "birth_year": "47BBY",
-            "url": "http://swapi.dev/api/people/9/"
+            "url": "https://swapi.dev/api/people/9/"
           },
           {
             "edited": "2014-12-20T21:17:50.330Z",
@@ -161,7 +161,7 @@
             "mass": "unknown",
             "homeworld": 21,
             "birth_year": "19BBY",
-            "url": "http://swapi.dev/api/people/5/"
+            "url": "https://swapi.dev/api/people/5/"
           },
           {
             "edited": "2014-12-20T21:17:50.338Z",
@@ -175,7 +175,7 @@
             "mass": "1,358",
             "homeworld": 24,
             "birth_year": "600BBY",
-            "url": "http://swapi.dev/api/people/13/"
+            "url": "https://swapi.dev/api/people/13/"
           }];
         return people;
       },
