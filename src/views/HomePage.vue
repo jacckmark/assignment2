@@ -32,6 +32,7 @@
       :key="index"
       :person="person"
     />
+    <div v-if="!isPeopleListEmpty" class="spinner-border text-info"></div>
   </div>
 </template>
 
@@ -152,15 +153,15 @@
             "edited": "2014-12-20T21:17:50.330Z",
             "name": "BWilhuff Tarkin",
             "created": "2014-12-10T16:26:56.138Z",
-            "gender": "male",
+            "gender": "female",
             "skin_color": "fair",
             "hair_color": "auburn, grey",
             "height": "180",
             "eye_color": "blue",
             "mass": "unknown",
             "homeworld": 21,
-            "birth_year": "64BBY",
-            "url": "http://swapi.dev/api/people/91/"
+            "birth_year": "19BBY",
+            "url": "http://swapi.dev/api/people/5/"
           },
           {
             "edited": "2014-12-20T21:17:50.338Z",
@@ -222,6 +223,9 @@
         return this.peopleResult.filter(el => {
           return filteredLetters.some(letter => letter === el.name.charAt(0).toLowerCase())
         })
+      },
+      isPeopleListEmpty() {
+        return this.peopleCurList?.length;
       }
     },
   }

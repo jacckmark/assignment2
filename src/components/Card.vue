@@ -30,7 +30,12 @@
           </ul>
         </div>
         <div class="card-body text-right pt-0 pb-0">
-          <BaseButton buttonTxt="edit" buttonType="primary" class="text-left" />
+          <BaseButton
+            @click="goToEditPage"
+            buttonTxt="edit"
+            buttonType="primary"
+            class="text-left"
+          />
         </div>
       </div>
     </div>
@@ -55,6 +60,9 @@
     methods: {
       isNumPositive(num) {
         return num >= 0;
+      },
+      goToEditPage() {
+        this.$router.push({ name: "PersonPage", params: { id: this.personId } })
       }
     },
     computed: {
