@@ -158,9 +158,6 @@
       }
     },
     computed: {
-      peopleList() {
-        return this.peopleResult?.results;
-      },
       femaleCount() {
         return this.peopleResult?.filter(el => el.gender === 'female').length;
       },
