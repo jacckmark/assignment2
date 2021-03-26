@@ -67,7 +67,6 @@
         //     const response = await this.axios.get(`${this.endpoint}${pageCounter}`);
         //     const data = response.data;
         //     lastResult = data;
-        //     console.log(data);
         //     data.results.forEach(person => {
         //       const { name, skin_color, eye_color, birth_year } = person;
         //       people.push({ name, skin_color, eye_color, birth_year });

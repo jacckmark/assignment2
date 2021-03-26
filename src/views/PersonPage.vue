@@ -100,7 +100,6 @@
     beforeRouteEnter(to, from, next) {
       next(async vm => {
         vm.personData = await vm.getPerson(vm.id)
-        console.log(vm.personData)
         if (!vm.isPersonEditable) {
           next('/');
         }
@@ -109,8 +108,7 @@
     methods: {
       async getPerson(personId) {
         try {
-          console.log(`${this.endpoint}${personId}`);
-          const response = await this.axios.get(`${this.endpoint}${personId}`);
+          const response = await this.axios.get(`${this.endpoint}${personId}/`);
           return response.data;
         } catch (err) {
           console.error(err);
