@@ -116,7 +116,7 @@
       },
       eyeColor() {
         for (let col in scssvars) {
-          if (this.person.eye_color === col) return col;
+          if (this.person.eye_color === col) return scssvars[col];
         }
         return 'black';
       }
