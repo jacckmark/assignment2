@@ -78,7 +78,12 @@
         />
       </div>
       <div class="mt-4 mb-4 form-group d-flex justify-content-around">
-        <BaseButton buttonTxt="submit" buttonType="success" />
+        <BaseButton
+          buttonTxt="submit"
+          type="submit"
+          value="submit"
+          buttonType="success"
+        />
         <router-link to="/">
           <BaseButton buttonTxt="go back to home" buttonType="primary" />
         </router-link>
@@ -114,9 +119,9 @@
           console.error(err);
         }
       },
-    },
-    editPerson() {
-      console.log('edited person: ', this.personData);
+      editPerson() {
+        console.log('edited person: ', this.personData);
+      },
     },
     computed: {
       isPersonEditable() {
