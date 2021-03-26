@@ -126,8 +126,8 @@
     computed: {
       isPersonEditable() {
         return this.personData.gender === 'male' && this.personData.eye_color === 'blue' && this.personData.birth_year === '19BBY';
-      }
-    }
+      },
+    },
   }
 </script>
 

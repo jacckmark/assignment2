@@ -74,7 +74,7 @@
     computed: {
       personGender() {
         let otherGenders = ['n/a', 'hermaphrodite', 'none'];
-        return otherGenders.some(gender => gender === this.person.gender) ? 'identicon' : this.person.gender.toLowerCase();
+        return otherGenders.some(gender => gender === this.person.gender) ? 'identicon' : this.person?.gender?.toLowerCase();
       },
       personPicUrl() {
         return `${this.avatarsEndpoint}${this.personGender}/${this.personId}.svg`
@@ -87,10 +87,10 @@
         return this.person?.name;
       },
       personMass() {
-        return parseInt(this.person?.mass.replace(/,/g, ''));
+        return parseInt(this.person?.mass?.replace(/,/g, '')) || 0;
       },
       personHeight() {
-        return parseInt(this.person?.height.replace(/,/g, '')) / 100;
+        return parseInt(this.person?.height?.replace(/,/g, '')) / 100 || 0;
       },
       personBmi() {
         return isNaN(this.personMass) || isNaN(this.personHeight) ? 0 : this.personMass / (this.personHeight ** 2);
